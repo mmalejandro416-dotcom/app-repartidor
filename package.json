@@ -7,6 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "build:web": "expo export --platform web --output-dir dist",
     "build:apk": "npx eas-cli build --platform android --profile preview",
     "build:aab": "npx eas-cli build --platform android --profile production"
   },
