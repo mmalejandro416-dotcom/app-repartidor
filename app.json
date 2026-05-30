@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "Mi Tienda Repartidor",
+    "slug": "app-repartidor",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.mitienda.repartidor",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "FOREGROUND_SERVICE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Mi Tienda Repartidor usa tu ubicacion para enviar tu posicion durante las entregas."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "83fc850c-e9f1-40c2-9691-32ed92728d63"
+      }
+    },
+    "owner": "alely2002",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/83fc850c-e9f1-40c2-9691-32ed92728d63"
+    }
+  }
+}
