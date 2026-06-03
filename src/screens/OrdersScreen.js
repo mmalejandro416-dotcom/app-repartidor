@@ -84,6 +84,32 @@ export default function OrdersScreen() {
     }
   };
 
+  const reportProblem = async (tipo, label) => {
+    if (!selected?.id) return;
+    try {
+      await axios.post(`${BASE_URL}/devoluciones/reportar_pedido.php`, {
+        pedido_id: selected.id,
+        tipo,
+        solicita_reembolso: true,
+        comentario: `Repartidor reporta: ${label}`,
+      });
+      Alert.alert('Incidencia enviada', 'Administracion revisara el pedido.');
+      setSelected(null);
+      loadOrders();
+    } catch (e) {
+      Alert.alert('No se pudo reportar', e?.response?.data?.error || 'Intenta de nuevo.');
+    }
+  };
+
+  const chooseProblem = () => {
+    Alert.alert('Problema con pedido', `Pedido #${selected?.id}`, [
+      { text: 'Pedido dañado', onPress: () => reportProblem('pedido_danado', 'Pedido dañado') },
+      { text: 'Cliente no recibió', onPress: () => reportProblem('cliente_no_recibio', 'Cliente no recibió') },
+      { text: 'Entrega fallida', onPress: () => reportProblem('entrega_fallida', 'Entrega fallida') },
+      { text: 'Cancelar', style: 'cancel' },
+    ]);
+  };
+
   const nextAction = (order) => {
     const state = normalize(order.estado);
     if (state === 'aceptado') return { label: 'Ya recogi', next: 'recogido', color: theme.colors.secondary };
@@ -230,7 +256,7 @@ export default function OrdersScreen() {
                   <Text style={styles.primaryDetailText}>{action.label}</Text>
                 </TouchableOpacity>
               ) : null}
-              <TouchableOpacity style={styles.problemBtn} activeOpacity={0.85}>
+              <TouchableOpacity style={styles.problemBtn} onPress={chooseProblem} activeOpacity={0.85}>
                 <Text style={styles.problemText}>Problema con pedido</Text>
               </TouchableOpacity>
             </View>
