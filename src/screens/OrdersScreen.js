@@ -122,7 +122,7 @@ export default function OrdersScreen() {
         <View style={styles.metrics}>
           <View style={styles.metric}><Route size={16} color={theme.colors.textSecondary} /><Text style={styles.metricText}>{order.distancia || '2.4 km'}</Text></View>
           <View style={styles.metric}><Clock3 size={16} color={theme.colors.textSecondary} /><Text style={styles.metricText}>{order.eta || '15 min'}</Text></View>
-          <View style={styles.metric}><CreditCard size={16} color={theme.colors.textSecondary} /><Text style={styles.metricText}>{order.metodo_pago || 'Efectivo'}</Text></View>
+          <View style={styles.metric}><CreditCard size={16} color={theme.colors.textSecondary} /><Text style={styles.metricText}>{order.metodo_pago || 'Efectivo'} · {order.estado_pago === 'aprobado' ? 'Autorizado' : 'Pago en entrega'}</Text></View>
           <Text style={styles.earning}>{money(order.ganancia || order.total)}</Text>
         </View>
 
